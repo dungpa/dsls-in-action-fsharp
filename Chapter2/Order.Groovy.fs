@@ -24,9 +24,9 @@ type Order private (boughtOrSold, quantity, security, limitPrice, allOrNone, val
                                  allOrNone = true, valueAs = Unchecked.defaultof<_>)
 
     member x.To = x
-    member x.Buy (qty, sec) (po: PartialOrder) =
+    member x.Buy (qty, sec) po =
             new Order(Bought, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
-    member x.Sell (qty, sec) (po: PartialOrder) =
+    member x.Sell (qty, sec) po =
             new Order(Sold, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
     
     override x.ToString() =
@@ -38,7 +38,6 @@ type Order private (boughtOrSold, quantity, security, limitPrice, allOrNone, val
 
 let NewOrder = Order.Default
 
-/// There is a minor limitation due to 100.Shares is parsed as an identifier by F#
 type Int32 with
     member x.Shares = x
     member x.Of (s: string) = x, s
