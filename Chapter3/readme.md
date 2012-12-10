@@ -13,3 +13,4 @@ There is no short-cut for `fun x -> x.FirstName` like that in Scala.
 A potential fix is to use reflection and add equivalent module functions for those properties.
 
 In F#, `fun x -> x > threshold` is the same as `(<) threshold` or `flip (>) threshold`, which are not as clear as Scala one.
+The `<<-` operator is utilized instead of `<<` since `<<` is a widely-used combinator in F#.
