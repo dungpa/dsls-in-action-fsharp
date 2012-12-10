@@ -43,6 +43,9 @@
     <Compile Include="Order.Groovy.fs" />
     <None Include="Order.Groovy1.fsx" />
     <None Include="Order.Groovy2.fsx" />
+    <Compile Include="Account.Scala.fs" />
+    <None Include="Account.Scala.fsx" />
+    <None Include="readme.md" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
