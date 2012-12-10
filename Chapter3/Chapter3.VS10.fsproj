@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{a8f54823-084e-4d68-ae51-2fcd3c2a0e39}</ProjectGuid>
+    <ProjectGuid>{4f5d9afb-988b-41ec-9fd7-12eaab9cade9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Chapter2.VS10</RootNamespace>
-    <AssemblyName>Chapter2.VS10</AssemblyName>
+    <AssemblyName>Chapter3.VS10</AssemblyName>
     <Name>Chapter2.VS10</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -34,8 +34,8 @@
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildBinPath)\Microsoft.Build.Tasks.v4.0.dll')" />
   <ItemGroup>
     <Compile Include="Order.Groovy.fs" />
-    <Compile Include="Order.Groovy1.fsx" />
-    <Compile Include="Order.Groovy2.fsx" />
+    <None Include="Order.Groovy1.fsx" />
+    <None Include="Order.Groovy2.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

@@ -1,5 +1,5 @@
 ﻿#load "Order.Groovy.fs"
-open FSharpx.Books.DSLsInAction.Chapter2.Order.Groovy
+open FSharpx.Books.DSLsInAction.Chapter3.Groovy
 fsi.AddPrinter(fun (ra: ResizeArray<Order>) -> sprintf "%A" ra)
 
 // F# script for Order Placement

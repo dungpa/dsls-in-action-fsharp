@@ -1,6 +1,6 @@
 ﻿#load "Order.Java.fs"
 
-open FSharpx.Books.DSLsInAction.Chapter2.Order.Java
+open FSharpx.Books.DSLsInAction.Chapter2.Java
 
 let order = Order.Buy(
                       quantity = 100, 

@@ -1,4 +1,4 @@
-﻿module FSharpx.Books.DSLsInAction.Chapter2.Order.Java
+﻿module FSharpx.Books.DSLsInAction.Chapter2.Java
 
 open System.Text
 

@@ -1,4 +1,4 @@
-﻿module FSharpx.Books.DSLsInAction.Chapter2.Order.Groovy
+﻿module FSharpx.Books.DSLsInAction.Chapter2.Groovy
 
 open System
 open System.Text

@@ -1,6 +1,6 @@
 ﻿#load "Order.Groovy.fs"
 
-open FSharpx.Books.DSLsInAction.Chapter2.Order.Groovy
+open FSharpx.Books.DSLsInAction.Chapter2.Groovy
 
 /// There is a minor limitation due to 100.Shares is parsed as an identifier by F#
 let order = 
