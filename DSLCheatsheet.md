@@ -32,7 +32,7 @@ These features are mostly emerged in the translation of the book's examples.
 ---
 ### Records ###
 ---
-### Discriminated unions ###
+### Discriminated unions & pattern matching ###
 ---
 ### Infix functions ###
 ---
@@ -51,6 +51,8 @@ These features are mostly emerged in the translation of the book's examples.
   |> Seq.fold (+) 0.0
   ```       
 ---
+### High-order functions & function composition ###
+
 ### Type augmentation ###
 ---
 ### Type constraints ###
