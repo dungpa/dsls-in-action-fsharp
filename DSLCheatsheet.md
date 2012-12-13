@@ -52,7 +52,7 @@ These features are mostly emerged in the translation of the book's examples.
   ```       
 ---
 ### High-order functions & function composition ###
-
+---
 ### Type augmentation ###
 ---
 ### Type constraints ###
