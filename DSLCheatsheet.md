@@ -3,6 +3,8 @@ A cheatsheet for F#'s DSL-friendly features
 
 This document gives you an overview of F#'s goodies for DSL development. 
 It assumes you are familiar with F# syntax; the features are introduced in the order of their encounters by the author.
+This is by no means a complete reference of F#'s DSL-friendly features. 
+These features are mostly emerged in the translation of the book's examples.
 
 ---
 

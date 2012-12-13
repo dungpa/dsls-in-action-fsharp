@@ -1,7 +1,17 @@
 DSLs in Action in F#
 ===
-### Code and Examples from Debasish Ghosh's "[DSLs in Action](http://www.manning.com/ghosh/)" ###
+### Translation of Code and Examples from Debasish Ghosh's "[DSLs in Action](http://www.manning.com/ghosh/)" ###
 
 ---
 
-More details to come.
+### Purpose ###
+
+---
+
+### Setup / Installation ###
+
+---
+
+### Misc ###
+
+For detailed notes about F#-specific features for DSL development, please refer to [A cheatsheet for F#'s DSL-friendly features](DSLCheatsheet.md).
