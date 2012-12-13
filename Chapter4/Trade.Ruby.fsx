@@ -2,6 +2,8 @@
 
 open FSharpx.Books.DSLsInAction.Chapter4.Ruby.Trade
 
+// Listing 4.1 DSL to create a client account  
+
 let a =
     Account.Create { 
             Number = "CL-BXT-23765"

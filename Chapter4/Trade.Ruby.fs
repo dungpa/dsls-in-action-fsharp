@@ -2,6 +2,8 @@
 
 open System
 
+// Listing 4.2 Expressive domain vocabulary in implementation of Account
+
 type Account = {
     Number: string;
     Holders: string list;
@@ -15,6 +17,8 @@ with static member Create x = x
 
 type Registry =
     static member Register (a: Account) = printfn "Registering  %O" a
+
+// Listing 4.4 Mailer class with fluent interfaces 
 
 #nowarn "49"
 
