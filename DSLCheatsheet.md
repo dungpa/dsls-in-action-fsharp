@@ -6,7 +6,7 @@ It assumes you are familiar with F# syntax; the features are introduced in the o
 
 ---
 
-- **Named arguments**
+### Named arguments ###
 
   F# class constructors and methods accept named arguments. 
   This is an advantage to shorten a chain of method calls and avoid the need of fluent style.
@@ -27,11 +27,14 @@ It assumes you are familiar with F# syntax; the features are introduced in the o
                 .AllOrNone(true)
                 .ValueAs(StandardOrderValuer)
   ```
-
-- Records
-- Discreminated unions
-- Infix functions
-- **Pipe operators**
+---
+### Records ###
+---
+### Discriminated unions ###
+---
+### Infix functions ###
+---
+### Pipe operators ###
 
   Pipe operators (`|>`, `<|`, `||>`, `<||`, etc) are commonly-used in F#. 
   They help to reorder functions to show flow of processing and give good hints to F# type checker. 
@@ -45,5 +48,7 @@ It assumes you are familiar with F# syntax; the features are introduced in the o
   |> Seq.filter (flip (>) threshold)
   |> Seq.fold (+) 0.0
   ```       
-- Type augmentation
-- Type constraints
+---
+### Type augmentation ###
+---
+### Type constraints ###
