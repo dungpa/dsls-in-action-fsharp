@@ -6,6 +6,7 @@ let acc2 = Account("acc-2", "John S.")
 let acc3 = Account("acc-3", "Fried T.")
 
 acc1 <<- "Mary R." <<- "Shawn P." <<- "John S."
+
 let accounts = [acc1; acc2; acc3]
 accounts |> Seq.filter (Account.belongsTo "John S.")
          |> Seq.map (fun x -> x.FirstName)
