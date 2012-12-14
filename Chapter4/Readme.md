@@ -3,9 +3,9 @@
 ---
 
 There is no implicit context in F#, so we use records to mimic the scope of an implicit context. 
-We may revisit this issue by some reflection-based techniques.
+We may revisit this issue by exploiting some reflection-based techniques.
 
-The Decorator example in Ruby is twisted by using mutable property in F#.
+The Decorator example in Ruby is twisted by using a mutable property in F#.
 
 For the porfolio example in Scala, we only translate the generic version.
 
