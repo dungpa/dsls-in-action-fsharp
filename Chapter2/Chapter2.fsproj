@@ -44,7 +44,7 @@
     <None Include="Order.Java.fsx" />
     <Compile Include="Order.Groovy.fs" />
     <None Include="Order.Groovy.fsx" />
-    <None Include="readme.md" />
+    <None Include="Readme.md" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
