@@ -46,6 +46,10 @@ match status with
 | Closed -> printfn "closed"
 ```
 ---
+### Active patterns ###
+---
+### Unit of measures ###
+---
 
 ### Infix functions ###
 Using infix functions is a great way to derive concise and composable DSLs. 
@@ -58,7 +62,6 @@ type Account with
 let acc1 = Account("acc-1", "David P.")
 acc1 <<- "Mary R." <<- "Shawn P." <<- "John S."
 ```
-
 ---
 
 ### Pipepline operators ###
@@ -75,7 +78,6 @@ accounts
 |> Seq.filter (flip (>) threshold)
 |> Seq.fold (+) 0.0
 ```       
-
 ---
 ### High-order functions & function composition ###
 ---
@@ -98,6 +100,5 @@ let order =
         valueAs = fun quantity unitPrice -> quantity * unitPrice - 500
 }    
 ```
-
 ---
 ### Type constraints ###
