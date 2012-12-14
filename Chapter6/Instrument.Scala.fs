@@ -6,14 +6,14 @@ open System
 
 type Currency = Currency of string
 
-let (|USD|_|) = function Currency("US Dollar") -> Some () | _ -> None
-let (|JPY|_|) = function Currency("Japanese Yen") -> Some () | _ -> None
-let (|HKD|_|) = function Currency("Hong Kong Dollar") -> Some () | _ -> None
+let USD = Currency("US Dollar")
+let JPY = Currency("Japanese Yen")
+let HKD = Currency("Hong Kong Dollar")
 
 type Instrument =
     abstract member IsIn: unit -> string
 
-type Equity(isIn: string, dateOfIssue: DateTime) =
+type Equity(isIn: string, ?dateOfIssue: DateTime) =
     interface Instrument with
         member x.IsIn() = isIn
 
@@ -39,3 +39,6 @@ type DiscountBond(isIn: string) =
         member x.DateOfIssue = DateTime.Today
         member x.DateOfMaturity = DateTime.Today
         member x.Nominal = Convert.ToDecimal(0)
+
+//let IBM = DiscountBond("ISIN-1234", DateTime.Today, DateTime.Today, 10000, 4)
+let IBM_EQ = Equity("ISIN-3456")

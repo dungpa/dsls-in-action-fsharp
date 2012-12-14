@@ -38,6 +38,8 @@
   <ItemGroup>
     <None Include="Readme.md" />
     <Compile Include="Instrument.Scala.fs" />
+    <Compile Include="Account.Scala.fs" />
+    <Compile Include="Trade.Scala.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
