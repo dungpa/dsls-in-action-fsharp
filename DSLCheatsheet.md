@@ -3,8 +3,8 @@ A cheatsheet for F#'s DSL-friendly features
 
 This document gives you an overview of F#'s goodies for DSL development. 
 It assumes you are familiar with F# syntax; the features are introduced in the order of their encounters by the author.
-This is by no means a complete reference of F#'s DSL-friendly features. 
-These features are mostly emerged in the translation of the book's examples.
+This is by no means a complete reference of F#'s DSL-friendly functionalities. 
+These features are mostly emerged in the translation of the book 's examples.
 
 ---
 
@@ -38,7 +38,7 @@ let order = Order()
 
 ### Infix functions ###
 Using infix functions is a great way to derive concise and composable DSLs. 
-Since F# only allows symbolic infix operators, the use of infix operators is more limited than other functional programming languages.
+Since F# only allows symbolic infix operators, the use of infix operators is more limited than that in other functional programming languages.
 ```fsharp
 /// (from Chapter3/Order.Groovy.fs)
 let Empty = new ResizeArray<Order>()
@@ -75,6 +75,23 @@ accounts
 ---
 ### Computation expressions ###
 ---
+
 ### Type augmentation ###
+You can easily add extension methods to a built-in or user-define type in F#. 
+This is very helpful to inject new functionalities to known types and make DSLs more readable.
+```fsharp
+/// (from Chapter2/Order.Groovy.fs)
+type Int32 with
+    member x.Shares = x
+    member x.Of (s: string) = x, s
+    
+let order = 
+    NewOrder.To.Buy(100 .Shares.Of "IBM") {
+        limitPrice = 300
+        allOrNone = true
+        valueAs = fun quantity unitPrice -> quantity * unitPrice - 500
+}    
+```
+
 ---
 ### Type constraints ###
