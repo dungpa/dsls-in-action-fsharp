@@ -4,7 +4,7 @@ A cheatsheet for F#'s DSL-friendly features
 This document gives you an overview of F#'s goodies for DSL development. 
 It assumes you are familiar with F# syntax; the features are introduced in the order of their encounters by the author.
 This is by no means a complete reference of F#'s DSL-friendly functionalities. 
-These features are mostly emerged in the translation of the book 's examples.
+These features are mostly emerged in the translation of [the book](http://www.manning.com/ghosh/)'s examples.
 
 ---
 
@@ -34,7 +34,7 @@ let order = Order()
 ---
 
 ### Discriminated unions & pattern matching ###
-Discriminated unions is a concise and typesafe way to model sum types. 
+Discriminated unions is a concise and type-safe way to model sum types. 
 Its combination with pattern matching does give a look of a DSL in processing data.
 ```fsharp
 /// (from Chapter3/Account.Scala.fs)
@@ -83,9 +83,11 @@ accounts
 ---
 ### Computation expressions ###
 ---
+### Code quotations ###
+---
 
 ### Type augmentation ###
-You can easily add extension methods to a built-in or user-define type in F#. 
+You can easily add extension methods to a built-in or user-defined type in F#. 
 This is very helpful to inject new functionalities to known types and make DSLs more readable.
 ```fsharp
 /// (from Chapter2/Order.Groovy.fs)
