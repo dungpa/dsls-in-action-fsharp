@@ -1,4 +1,4 @@
-﻿module FSharpx.Books.DSLsInAction.Chapter4.Scala.Trade
+﻿module FSharpx.Books.DSLsInAction.Chapter6.Scala.Trade
 
 open System
 

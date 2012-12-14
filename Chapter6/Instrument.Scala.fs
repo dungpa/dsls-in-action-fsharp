@@ -1,4 +1,4 @@
-﻿module FSharpx.Books.DSLsInAction.Chapter4.Scala.Instrument
+﻿module FSharpx.Books.DSLsInAction.Chapter6.Scala.Instrument
 
 open System
 

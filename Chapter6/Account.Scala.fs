@@ -1,4 +1,4 @@
-﻿module FSharpx.Books.DSLsInAction.Chapter4.Scala.Account
+﻿module FSharpx.Books.DSLsInAction.Chapter6.Scala.Account
 
 open System
 

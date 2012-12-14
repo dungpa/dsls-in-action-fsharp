@@ -24,7 +24,7 @@ type EquityTrade<'S when 'S :> Stock> =
         member x.ValueOf() = ()
 
 [<AbstractClass>]
-type FixedIncomeTrade<'F when 'F :> Stock> =
+type FixedIncomeTrade<'F when 'F :> FixedIncome> =
     abstract member FI: 'F
     interface Trade<Trading> with
         member x.Account = failwith "Not implemented yet"
