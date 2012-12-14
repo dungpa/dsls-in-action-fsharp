@@ -32,25 +32,31 @@ let order = Order()
 ---
 ### Records ###
 ---
-### Discriminated unions & pattern matching ###
 
+### Discriminated unions & pattern matching ###
+Discriminated unions is a concise and typesafe way to model sum types. 
+Its combination with pattern matching does give a look of a DSL in processing data.
+```fsharp
+/// (from Chapter3/Account.Scala.fs)
+type Status = Open | Closed
+type Type = Trading | Settlement | Both
+
+match status with
+| Open -> printfn "open"
+| Closed -> printfn "closed"
+```
 ---
 
 ### Infix functions ###
 Using infix functions is a great way to derive concise and composable DSLs. 
 Since F# only allows symbolic infix operators, the use of infix operators is more limited than that in other functional programming languages.
 ```fsharp
-/// (from Chapter3/Order.Groovy.fs)
-let Empty = new ResizeArray<Order>()
-let (<<-) (ra: ResizeArray<_>) el = ra.Add el
-
-let orders = Empty
-let order1 = NewOrder.To.Buy(100 .Shares.Of "IBM") {
-    limitPrice = 300
-    allOrNone = true
-    valueAs = fun qty unitPrice -> qty * unitPrice - 500
-}
-orders <<- order1
+/// (from Chapter3/Account.Scala.fs)
+type Account with
+    static member (<<-)(x: Account, name) = x.addName(name)
+            
+let acc1 = Account("acc-1", "David P.")
+acc1 <<- "Mary R." <<- "Shawn P." <<- "John S."
 ```
 
 ---
@@ -59,7 +65,7 @@ orders <<- order1
 
 Pipepline operators (`|>`, `<|`, `||>`, `<||`, etc) are commonly-used in F#. 
 They help to reorder functions to show flow of processing and give good hints to F# type checker. 
-An appropriate use of pipepline operators can give a look of small DSL in manipulating data.
+An appropriate use of pipepline operators can give a look of a small DSL in manipulating data.
   
 ```fsharp
 /// Using pipepline operators (from Chapter3/Account.Scala.fs)
