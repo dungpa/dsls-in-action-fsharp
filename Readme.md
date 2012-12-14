@@ -5,9 +5,9 @@ DSLs in Action in F#
 ---
 
 ### Purpose ###
-This is an *unfaithful* translation of the book's example to F#. 
-Although I tried to make it as close to the original examples as possible, certain examples cannot be expressed in F#, and a few features are not idiomatic to do in F#.
-For these reasons, a few examples have been changed to be F#-friendly and a few others are omited (e.g. examples in Chapter 5).
+This is an *unfaithful* translation of the book's examples to F#. 
+Although I tried to make it as close to the original programs as possible, certain examples cannot be expressed in F#, and a few features are not idiomatic to do in F#.
+For these reasons, a number of examples have been changed to be F#-friendly and some others are omited (e.g. all examples in Chapter 5).
 
 ---
 
