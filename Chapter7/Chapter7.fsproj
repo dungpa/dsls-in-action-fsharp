@@ -41,8 +41,8 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Compile Include="Order.Java.fs" />
-    <Compile Include="Parser.fs" />
-    <None Include="Order.Java.fsx" />
+    <Compile Include="Parser.Java.fs" />
+    <None Include="Main.Java.fsx" />
     <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>

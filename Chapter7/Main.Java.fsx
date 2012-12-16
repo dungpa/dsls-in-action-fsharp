@@ -3,7 +3,7 @@
 #r "FParsec"
 
 #load "Order.Java.fs"
-#load "Parser.fs"
+#load "Parser.Java.fs"
 
 open FSharpx.Books.DSLsInAction.Chapter7.Java.Parser
 

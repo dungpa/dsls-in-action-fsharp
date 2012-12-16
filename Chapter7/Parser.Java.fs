@@ -9,7 +9,7 @@ open FSharpx.Books.DSLsInAction.Chapter7.Java.Order
 
 let ws = spaces
 
-let identifier =  many1SatisfyL isLetter "identifier"
+let identifier = many1SatisfyL isLetter "identifier"
 let account = pstring "for" .>>. ws >>. identifier
 
 let numeral = many1SatisfyL isDigit "digit" |>> Convert.ToInt32
@@ -22,7 +22,7 @@ let order = tuple4 ((pstring "buy" <|> pstring "sell") .>> ws)
                     (security .>> ws)
                     (price .>> ws)
                     account
-           |>> Order.Create
+            |>> Order.Create
 
 let orders = sepEndBy1 order newline .>> eof
 
