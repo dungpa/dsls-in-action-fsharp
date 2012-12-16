@@ -8,17 +8,18 @@ open System
 open FSharpx.Books.DSLsInAction.Chapter7.Java.Order
 
 let ws = spaces
+let str = pstring
 
 let identifier = many1SatisfyL isLetter "identifier"
-let account = pstring "for" .>>. ws >>. identifier
+let account = str "for" .>>. ws >>. identifier
 
 let numeral = many1SatisfyL isDigit "digit" |>> Convert.ToInt32
-let limitPrice = pstring "limitprice" .>>. ws .>>. pstring "=" .>>. ws >>. numeral
-let price = pstring "@" .>>. ws >>. (numeral <|> limitPrice)
+let limitPrice = str "limitprice" .>>. ws .>>. str "=" .>>. ws >>. numeral
+let price = str "@" .>>. ws >>. (numeral <|> limitPrice)
 
 let security = identifier
 
-let order = tuple4 ((pstring "buy" <|> pstring "sell") .>> ws) 
+let order = tuple4 ((str "buy" <|> str "sell") .>> ws) 
                     (security .>> ws)
                     (price .>> ws)
                     account
