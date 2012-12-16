@@ -16,7 +16,12 @@ Certain examples which cannot be expressed in F# have been omitted or updated to
 
 ---
 
-### Misc ###
+### Porting notes ###
+
+The translated examples conform to the following conventions:
+- Each example is named `XX.YY.fs` where `XX` is the name of the problem and `YY` is the language for which the original program is written, including Java, Ruby, Groovy, Clojure and Scala.
+- Most of `XX.YY.fsx` files are the corresponding scripting versions of `XX.YY.fs` files.
+- Many files have `// Listing X.Y ...` bits which are to reference the book's corresponding snippets.
 
 For detailed notes about F#-specific features for DSL development, please refer to [A cheatsheet for F#'s DSL-friendly features](https://github.com/dungpa/dsls-in-action-fsharp/blob/master/DSLCheatsheet.md).
 
