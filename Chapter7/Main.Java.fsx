@@ -1,4 +1,4 @@
-﻿#I @"..\packages\FParsec.0.9.2.0\lib\net40"
+﻿#I @"../packages/FParsec.0.9.2.0/lib/net40"
 #r "FParsecCS"
 #r "FParsec"
 
