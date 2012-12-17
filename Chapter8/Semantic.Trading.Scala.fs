@@ -32,30 +32,30 @@ module Parsing =
     type Parser<'a> = Parser<'a, unit>
 
     let ws = spaces
-    let str = pstring
-    let betweenStrings s1 s2 p = str s1 >>. p .>> str s2
+    let str s = pstring s .>> ws
+    let betweenStrings s1 s2 p = pstring s1 >>. p .>> pstring s2
     let const' x = fun _ -> x
 
-    let identifier = many1SatisfyL isLetter "identifier"
+    let identifier = many1SatisfyL isLetter "identifier" .>> ws
     let stringLit = betweenStrings "\"" "\"" (manySatisfy ((<>) '"'))
-    let account = str "for" .>>. ws .>>. str "account" .>>. ws >>. stringLit |>> Account
+    let account = str "for" >>. str "account" >>. stringLit |>> Account
 
     let minMax = (str "min" |>> const' Min) <|> (str "max" |>> const' Max)
 
-    let numeral = many1SatisfyL isDigit "digit" |>> Convert.ToInt32
-    let price = tuple2 (str "at" >>. ws >>. opt minMax .>> ws) numeral
+    let numeral = many1SatisfyL isDigit "digit" .>> ws |>> Convert.ToInt32
+    let price = tuple2 (str "at" >>. opt minMax) numeral
                 |>> fun (po, p) -> if p > 20 then Price(po, p) 
                                    else failwith "Price needs to be > 20"
 
-    let security = tuple2 (numeral .>> ws) (identifier .>> ws .>> str "shares") |>> Security
+    let security = tuple2 numeral (identifier .>> str "shares") |>> Security
 
-    let buySell = str "to" >>. ws >>. ((str "buy" |>> const' Buy) <|> (str "sell" |>> const' Sell))
+    let buySell = str "to" >>. ((str "buy" |>> const' Buy) <|> (str "sell" |>> const' Sell))
 
-    let lineItem = tuple3 (security .>> ws) (buySell .>> ws) price |>> LineItem
+    let lineItem = tuple3 security buySell price |>> LineItem
 
-    let items = betweenStrings "(" ")" (sepEndBy1 lineItem (str "," .>> ws)) |>> Items
+    let items = betweenStrings "(" ")" (sepBy1 lineItem (str ",")) .>> ws |>> Items
 
-    let order: Parser<_> = tuple2 (items .>> ws) account |>> Order
+    let order: Parser<_> = tuple2 items account |>> Order
 
     let parseTradings str = 
         match run order str with
