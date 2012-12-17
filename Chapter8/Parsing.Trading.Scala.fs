@@ -11,26 +11,26 @@ open System
 type Parser<'a> = Parser<'a, unit>
 
 let ws = spaces
-let str = pstring
-let betweenStrings s1 s2 p = str s1 >>. p .>> str s2
+let str s = pstring s .>> ws
+let betweenStrings s1 s2 p = pstring s1 >>. p .>> pstring s2
 
-let identifier = many1SatisfyL isLetter "identifier"
+let identifier = many1SatisfyL isLetter "identifier" .>> ws
 let stringLit = betweenStrings "\"" "\"" (manySatisfy ((<>) '"'))
-let account = str "for" .>>. ws .>>. str "account" .>>. ws >>. stringLit
+let account = str "for" >>. str "account" >>. stringLit
 
-let min_max = str "min" <|> str "max"
-let numeral = many1SatisfyL isDigit "digit" |>> Convert.ToInt32
-let price = tuple2 (str "at" >>. ws >>. opt min_max .>> ws) numeral
+let minMax = str "min" <|> str "max"
+let numeral = many1SatisfyL isDigit "digit" .>> ws |>> Convert.ToInt32
+let price = tuple2 (str "at" >>. opt minMax) numeral
 
-let security = tuple2 (numeral .>> ws) (identifier .>> ws .>> str "shares")
+let security = tuple2 numeral (identifier .>> str "shares")
 
-let buySell = str "to" >>. ws >>. (str "buy" <|> str "sell")
+let buySell = str "to" >>. (str "buy" <|> str "sell")
 
-let lineItem = tuple3 (security .>> ws) (buySell .>> ws) price
+let lineItem = tuple3 security buySell price
 
-let items = betweenStrings "(" ")" (sepEndBy1 lineItem (str "," .>> ws))
+let items = betweenStrings "(" ")" (sepBy1 lineItem (str ",")) .>> ws
 
-let order: Parser<_> = tuple2 (items .>> ws) account
+let order: Parser<_> = tuple2 items account
 
 let parseTradings str = 
     match run order str with
