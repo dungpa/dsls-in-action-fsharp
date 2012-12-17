@@ -5,6 +5,12 @@
 #load "SSI.Trading.Scala.fs"
 
 open FSharpx.Books.DSLsInAction.Chapter8.Scala.Trading.SSI
+open Parsing
 
-let example =  """settle trades for broker "icici" in "JPN" market safekeep security internally with us at "us-123" settle cash externally at "BOJ" "b-954"
+let example =  """settle trades 
+                  for broker "icici" in "JPN" market 
+                  safekeep security internally with us at "us-123" 
+                  settle cash externally at "BOJ" "b-954"
 """
+
+let result = parseTradings example
