@@ -39,12 +39,14 @@
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <ItemGroup>
-    <None Include="Readme.md" />
     <None Include="packages.config" />
     <Compile Include="Parsing.Trading.Scala.fs" />
     <None Include="Parsing.Trading.Scala.fsx" />
     <Compile Include="Semantic.Trading.Scala.fs" />
     <None Include="Semantic.Trading.Scala.fsx" />
+    <Compile Include="SSI.Trading.Scala.fs" />
+    <None Include="SSI.Trading.Scala.fsx" />
+    <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">
