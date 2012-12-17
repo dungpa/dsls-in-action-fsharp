@@ -24,11 +24,11 @@ let price = tuple2 (str "at" >>. ws >>. min_max .>> ws) numeral
 
 let security = tuple2 (numeral .>> ws) (identifier .>> ws .>> str "shares")
 
-let buy_sell = str "to" >>. ws >>. (str "buy" <|> str "sell")
+let buySell = str "to" >>. ws >>. (str "buy" <|> str "sell")
 
-let line_item = tuple3 (security .>> ws) (buy_sell .>> ws) price
+let lineItem = tuple3 (security .>> ws) (buySell .>> ws) price
 
-let items = betweenStrings "(" ")" (sepEndBy1 line_item (str "," .>> ws))
+let items = betweenStrings "(" ")" (sepEndBy1 lineItem (str "," .>> ws))
 
 let order: Parser<_> = tuple2 (items .>> ws) account
 
@@ -36,6 +36,3 @@ let parseTradings str =
     match run order str with
     | Success(result, _, _)   -> result
     | Failure(errorMsg, _, _) -> failwithf "Failure: %s from \"%s\"" errorMsg str
-
-
-
