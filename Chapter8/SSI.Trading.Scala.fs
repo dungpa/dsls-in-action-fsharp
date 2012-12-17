@@ -1,6 +1,8 @@
 ﻿namespace FSharpx.Books.DSLsInAction.Chapter8.Scala.Trading.SSI
 
 module AST =
+    // Listing 8.8 The Semantic Model (AST) for the SSI DSL
+
     type Market = string
     type Security = string
     type CustomerCode = string
@@ -39,7 +41,9 @@ module Parsing =
     open System
     open AST
 
-    let ws = spaces1
+    // Listing 8.9 The complete DSL that generates our semantic model
+
+    let ws = spaces
     let str s = pstring s .>> ws
     let betweenStrings s1 s2 p = pstring s1 >>. p .>> pstring s2
     let inline const' x = fun _ -> x
@@ -98,8 +102,4 @@ module Parsing =
     let parseTradings str = 
         match run standingRules str with
         | Success(result, _, _)   -> result
-        | Failure(errorMsg, _, _) -> failwithf "Failure: %s from \"%s\"" errorMsg str 
-    
-
-
-
+        | Failure(errorMsg, _, _) -> failwithf "Failure: %s from \"%s\"" errorMsg str
