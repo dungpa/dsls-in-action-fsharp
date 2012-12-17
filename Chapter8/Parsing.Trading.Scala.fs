@@ -20,7 +20,7 @@ let account = str "for" .>>. ws .>>. str "account" .>>. ws >>. stringLit
 
 let min_max = str "min" <|> str "max"
 let numeral = many1SatisfyL isDigit "digit" |>> Convert.ToInt32
-let price = tuple2 (str "at" >>. ws >>. min_max .>> ws) numeral
+let price = tuple2 (str "at" >>. ws >>. opt min_max .>> ws) numeral
 
 let security = tuple2 (numeral .>> ws) (identifier .>> ws .>> str "shares")
 
