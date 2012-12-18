@@ -41,9 +41,8 @@
     <Compile Include="Instrument.Scala.fs" />
     <Compile Include="Account.Scala.fs" />
     <Compile Include="Trade.Scala.fs" />
-    <Compile Include="TaxFee.Scala.fs" />
-    <Compile Include="AST.Scala.fs" />
-    <None Include="AST.Scala.fsx" />
+    <Compile Include="TaxFeeRules.Scala.fs" />
+    <None Include="TaxFeeRules.Scala.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

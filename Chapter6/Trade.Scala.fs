@@ -2,36 +2,28 @@
 
 open System
 
+open FSharpx.Books.DSLsInAction.Chapter6.Scala
 open Account
 open Instrument
 
+// Listing 6.5 FixedIncomeTrade Implementation and Instantiation
+
+type Currency = USD | HKD | JPY
+type TaxFee = TradeTax | Commission | Surcharge | VAT
 type Market = NYSE | TOKYO | HKG | SGP
 
-// Listing 6.4 Trade model in F#
+type TradingAccount = Account
+type TradeDate = DateTime
+type UnitPrice = float
+type Quantity = float
+type CashValue = float
 
-[<AbstractClass>]
 type Trade =
-    abstract member TradingAccount: Account
-    abstract member Instrument: Instrument
-    abstract member Currency: Currency
-    abstract member TradeDate: DateTime
-    abstract member UnitPrice: decimal
-    abstract member Quantity: decimal
-    abstract member Market: Market
-    abstract member CashValue: decimal
-    abstract member Taxes: Map<TaxFee, decimal>
-    member x.Principal = x.UnitPrice * x.Quantity
+    | EquityTrade of TradingAccount * Instrument * Currency * TradeDate * Market * Quantity * UnitPrice
+    | FixedIncomeTrade of TradingAccount * Instrument * Currency * TradeDate * Market * Quantity * UnitPrice
+with member x.Market = match x with (EquityTrade(_, _, _, _, m, _, _) | FixedIncomeTrade(_, _, _, _, m, _, _)) -> m
+     member x.Principal = match x with (EquityTrade(_, _, _, _, _, q, u) | FixedIncomeTrade(_, _, _, _, _, q, u)) -> q * u
+            
+let trade = FixedIncomeTrade(NOMURA, IBM, USD, DateTime.Today, NYSE, 100.0, 42.0)
 
-and TaxFee = TaxFee of string
-
-[<AbstractClass>]
-type FixedIncomeTrade =
-    inherit Trade
-    abstract member Instrument: FixedIncome
-    abstract member AccruedInterest: decimal
-
-[<AbstractClass>]
-type EquityTrade =
-    inherit Trade
-    abstract member Instrument: Equity
 
