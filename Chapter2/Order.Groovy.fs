@@ -25,9 +25,9 @@ type Order private (boughtOrSold, quantity, security, limitPrice, allOrNone, val
 
     member x.To = x
     member x.Buy (qty, sec) po =
-            new Order(Bought, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
+            Order(Bought, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
     member x.Sell (qty, sec) po =
-            new Order(Sold, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
+            Order(Sold, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
     
     override x.ToString() =
             StringBuilder().AppendFormat("{0}", x.BoughtOrSold)
