@@ -38,23 +38,6 @@ let CashValue trade =
     | EquityTrade _ -> trade.Principal + totalTaxFee(trade)
     | FixedIncomeTrade _ -> trade.Principal + accruedInterest(trade) + totalTaxFee(trade)
 
-type Money = M of float * Currency
-
-type IQ = IQ of Instrument * Quantity
-with member x.ForClient(a: Account) = match x with IQ(i, q) -> AIQ(a, i, q)
-
-and AIQ = AIQ of Account * Instrument * Quantity
-with member x.On(m: Market) = match x with AIQ(a, i, q) -> MAIQ(m, a, i, q)
-
-and MAIQ = MAIQ of Market * Account * Instrument * Quantity
-with member x.At(c: Money) = 
-            match x, c with 
-            | MAIQ(m, a, i, q), M(v, c) -> FixedIncomeTrade(a,i, c, DateTime.Today, m, q, v)
-
-type System.Int32 with
-     member q.DiscountBonds(i: Instrument) = IQ (i, float q)
-     member v.CCY(c: Currency) = M(float v, c)
-
 [<AutoOpen>]
 module Operators =
     let inline DiscountBonds (i: Instrument) (f: float) = i, f
