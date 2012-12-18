@@ -20,7 +20,7 @@ type Order private (boughtOrSold, quantity, security, limitPrice, allOrNone, val
     member x.AllOrNone = allOrNone
     member x.Value = valueAs quantity limitPrice
 
-    static member Default = new Order(Bought, quantity = 0, security = "", limitPrice = 0, 
+    static member Default = Order(Bought, quantity = 0, security = "", limitPrice = 0, 
                                  allOrNone = true, valueAs = Unchecked.defaultof<_>)
 
     member x.To = x
