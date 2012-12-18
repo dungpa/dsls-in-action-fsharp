@@ -15,13 +15,13 @@ let market = function
 let forTrade (trade: Trade) = market trade.Market
 
 type [<Measure>] percent
-let hundredPercent = 100.0
+let hundredPercent = 100.0<percent>
 
-let calculateAs(trade: Trade) = function
-    | TradeTax -> 5.0/hundredPercent * trade.Principal
-    | Commission -> 20.0/hundredPercent * trade.Principal
-    | Surcharge -> 7.0/hundredPercent * trade.Principal
-    | VAT -> 7.0/hundredPercent * trade.Principal
+let calculateAs (trade: Trade) = function
+    | TradeTax -> 5.0<percent>/hundredPercent * trade.Principal
+    | Commission -> 20.0<percent>/hundredPercent * trade.Principal
+    | Surcharge -> 7.0<percent>/hundredPercent * trade.Principal
+    | VAT -> 7.0<percent>/hundredPercent * trade.Principal
 
 let calculateTaxFee trade = 
     forTrade trade 
@@ -29,7 +29,7 @@ let calculateTaxFee trade =
 
 let totalTaxFee trade =
     calculateTaxFee trade
-    |> List.fold (fun acc (_, p)-> acc + p) 0.0
+    |> List.fold (fun acc (_, p) -> acc + p) 0.0
 
 let accruedInterest _ = 100.0
 
@@ -44,6 +44,4 @@ module Operators =
     let inline ForClient (a: Account) (i, f) = a, i, f
     let inline On (m: Market) (a, i, f) = m, a, i, f
     let inline CCY v (c: Currency) = v, c
-    let inline At (v, c) (m, a, i, f) = FixedIncomeTrade(a,i, c, DateTime.Today, m, f, v)
-
-    
+    let inline At (v, c) (m, a, i, f) = FixedIncomeTrade(a, i, c, DateTime.Today, m, f, v)
