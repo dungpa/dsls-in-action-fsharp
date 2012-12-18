@@ -5,6 +5,8 @@ open System
 open Account
 open Instrument
 
+type Market = NYSE | TOKYO | HKG | SGP
+
 // Listing 6.4 Trade model in F#
 
 [<AbstractClass>]
@@ -15,9 +17,12 @@ type Trade =
     abstract member TradeDate: DateTime
     abstract member UnitPrice: decimal
     abstract member Quantity: decimal
-    abstract member Market: string // Market
+    abstract member Market: Market
     abstract member CashValue: decimal
-    abstract member Taxes: Map<string, decimal> // TaxFee
+    abstract member Taxes: Map<TaxFee, decimal>
+    member x.Principal = x.UnitPrice * x.Quantity
+
+and TaxFee = TaxFee of string
 
 [<AbstractClass>]
 type FixedIncomeTrade =
@@ -29,3 +34,4 @@ type FixedIncomeTrade =
 type EquityTrade =
     inherit Trade
     abstract member Instrument: Equity
+

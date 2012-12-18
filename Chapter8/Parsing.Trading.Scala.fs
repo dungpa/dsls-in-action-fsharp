@@ -36,3 +36,4 @@ let parseTradings str =
     match run order str with
     | Success(result, _, _)   -> result
     | Failure(errorMsg, _, _) -> failwithf "Failure: %s from \"%s\"" errorMsg str
+
