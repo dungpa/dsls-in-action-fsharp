@@ -16,10 +16,10 @@ type Order private (boughtOrSold, quantity, security: string, atLimitPrice, allO
     member x.Value = valueAs quantity atLimitPrice
 
     static member Buy(quantity, security, atLimitPrice, allOrNone, valueAs) =
-            new Order(Bought, quantity, security, atLimitPrice, allOrNone, valueAs)
+            Order(Bought, quantity, security, atLimitPrice, allOrNone, valueAs)
 
     static member Sell(quantity, security, atLimitPrice, allOrNone, valueAs) =
-            new Order(Sold, quantity, security, atLimitPrice, allOrNone, valueAs)
+            Order(Sold, quantity, security, atLimitPrice, allOrNone, valueAs)
 
     override x.ToString() =
             StringBuilder().AppendFormat("{0}", x.BoughtOrSold)
