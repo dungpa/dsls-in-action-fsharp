@@ -20,14 +20,14 @@ type Order private (boughtOrSold, quantity, security, limitPrice, allOrNone, val
     member x.AllOrNone = allOrNone
     member x.Value = valueAs quantity limitPrice
 
-    static member Default = new Order(Bought, quantity = 0, security = "", limitPrice = 0, 
+    static member Default = Order(Bought, quantity = 0, security = "", limitPrice = 0, 
                                  allOrNone = true, valueAs = Unchecked.defaultof<_>)
 
     member x.To = x
     member x.Buy (qty, sec) po =
-            new Order(Bought, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
+            Order(Bought, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
     member x.Sell (qty, sec) po =
-            new Order(Sold, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
+            Order(Sold, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
     
     override x.ToString() =
             StringBuilder().AppendFormat("{0}", x.BoughtOrSold)
