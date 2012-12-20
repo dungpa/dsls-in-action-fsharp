@@ -43,6 +43,7 @@
     <Compile Include="Trade.Scala.fs" />
     <Compile Include="TaxFeeRules.Scala.fs" />
     <None Include="TaxFeeRules.Scala.fsx" />
+    <None Include="Monadic.Scala.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
