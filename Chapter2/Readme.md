@@ -1,8 +1,8 @@
 ### Reading notes ###
 
-##### Financial brokerage system: processing client orders #####
+> #### Financial brokerage system: processing client orders ####
 
-The trading process involves buying and selling securities
+> The trading process involves buying and selling securities
 in the market place, guided by the rules of the stock exchange. These transactions
 take place in response to orders placed by investors through registered
 agents. These agents can be brokers, clearing banks, or financial advisers. A typical
@@ -12,7 +12,7 @@ constraint that the counterparty wants to impose on the price of execution. The
 following steps are performed from when the order is placed until the execution
 notice of trades is generated:
 
-1. The investor places the order with the agent.
+> 1. The investor places the order with the agent.
 2. The agent records the order and forwards it to the stock exchange.
 3. The order is executed and the notice of execution comes back to the agent.
 4. The agent records the execution details and passes the notice to the investor.
