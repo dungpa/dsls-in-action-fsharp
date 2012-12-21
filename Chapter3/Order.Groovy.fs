@@ -30,11 +30,11 @@ type Order private (boughtOrSold, quantity, security, limitPrice, allOrNone, val
             Order(Sold, qty, sec, po.limitPrice, po.allOrNone, po.valueAs)
     
     override x.ToString() =
-            StringBuilder().AppendFormat("{0}", x.BoughtOrSold)
-                           .AppendFormat(" {0} shares of {1}", x.Quantity, x.Security)
-                           .AppendFormat(" with limit price {0} ", x.LimitPrice)
-                           .Append(if x.AllOrNone then "ALL OR NONE" else "")
-                           .ToString()
+        StringBuilder().AppendFormat("{0}", x.BoughtOrSold)
+                        .AppendFormat(" {0} shares of {1}", x.Quantity, x.Security)
+                        .AppendFormat(" with limit price {0} ", x.LimitPrice)
+                        .Append(if x.AllOrNone then "ALL OR NONE" else "")
+                        .ToString()
 
 let NewOrder = Order.Default
 
