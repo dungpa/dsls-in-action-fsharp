@@ -49,3 +49,8 @@ A potential fix is to use reflection and add equivalent module functions for tho
 
 In F#, `fun x -> x > threshold` is the same as `(<) threshold` or `flip (>) threshold`, which are not as clear as Scala one.
 The `<<-` operator is utilized instead of `<<` since `<<` is a widely-used combinator in F#.
+
+We created a little query language using *extended* computation expressions. 
+Following the same principle as query expression, non-composable operators like iter, fold aren't included.
+Whenever you have a declarative DSL which can be chained through pipeline, it is easy to turn it into query expression.
+The syntax is a bit nicer thanks to auto-conversion of lambda expression.
