@@ -9,7 +9,7 @@ type Trade (refNo: string, account: string, instrument: string, principal: float
     member x.Instrument = instrument
     member x.Principal = principal
 
-    member x.Invoke
+    member private x.Invoke
         with get() = invoke
         and set(v) = invoke <- v
 
