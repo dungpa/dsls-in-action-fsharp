@@ -28,7 +28,7 @@ sequence {
 sequence {
     for acc in accounts do
     filter (acc.BelongsTo "John S.")
-    map (Account.calculateInterest acc) into x
+    map (calculateInterest acc) into x
     filter (x > threshold)
 }
 |> Seq.fold (+) 0.0

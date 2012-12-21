@@ -40,11 +40,13 @@ let inline flip f x y = f y x
 
 /// Augmented type, equivalent to Scala code fragment
 type Account with
-    static member belongsTo name (x: Account) = x.BelongsTo(name)
     static member (<<-)(x: Account, name) = x.AddName(name)
-    static member calculateInterest (x: Account) =
-            let fn = fun _ -> 100.0
-            x.Calculate fn
+    
+let belongsTo name (x: Account) = x.BelongsTo(name)
+    
+let calculateInterest (x: Account) =
+    let fn = fun _ -> 100.0
+    x.Calculate fn
 
 type SeqBuilder() =
     // Standard definition for 'for' and 'yield' in sequences
@@ -57,11 +59,7 @@ type SeqBuilder() =
     [<CustomOperation("map", AllowIntoPattern=true)>]
     member x.Map (source : seq<'T>, [<ProjectionParameter>] f: 'T -> 'R) : seq<'R> =
         Seq.map f source
-          
-    [<CustomOperation("iter")>]
-    member x.Iterate (source : seq<'T>, [<ProjectionParameter>] f : 'T -> unit) =
-        Seq.iter f source
-
+  
     [<CustomOperation("filter", MaintainsVariableSpace=true)>]
     member x.Filter (source : seq<'T>, [<ProjectionParameter>] f: 'T -> bool) : seq<'T> =
         Seq.filter f source
