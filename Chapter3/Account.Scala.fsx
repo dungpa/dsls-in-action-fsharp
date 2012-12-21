@@ -16,7 +16,7 @@ let threshold = 0.0
 
 /// Application of high-order functions / combinators
 accounts |> Seq.filter (Account.belongsTo "John S.")
-         |> Seq.map (fun x -> x.calculate calculatorImpl)
+         |> Seq.map (fun x -> x.Calculate calculatorImpl)
          |> Seq.filter (flip (>) threshold)
          |> Seq.fold (+) 0.0
 
