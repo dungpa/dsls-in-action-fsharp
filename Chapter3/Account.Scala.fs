@@ -26,6 +26,7 @@ type Account(number: string, firstName: string, accountType) =
     member x.IsOpen() = status = Open
     member x.AddName(name) = names.Add(name); x
     member x.Calculate(fn) = interestAccrued <- fn x; interestAccrued
+    member x.BelongsTo(name) = name = x.FirstName || Seq.exists ((=) name) x.Names
 
     override x.ToString() =
         StringBuilder().AppendFormat("{0}", x.Number)
@@ -37,8 +38,10 @@ let inline flip f x y = f y x
 
 /// Augmented type, equivalent to Scala code fragment
 type Account with
-    static member belongsTo name (x: Account) = name = x.FirstName || Seq.exists ((=) name) x.Names
     static member (<<-)(x: Account, name) = x.AddName(name)
-    static member calculateInterest (x: Account) =
-            let fn = fun _ -> 100.0
-            x.Calculate fn
+    
+let belongsTo name (x: Account) = x.BelongsTo(name)
+    
+let calculateInterest (x: Account) =
+    let fn = fun _ -> 100.0
+    x.Calculate fn
