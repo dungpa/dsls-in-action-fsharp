@@ -3,7 +3,9 @@
 open System.Text
 
 type Status = Open | Closed
+
 type Type = Trading | Settlement | Both
+with override x.ToString() = match x with Trading -> "Trading" | Settlement -> "Settlement" | Both -> "Both"
 
 /// Base type, equivalent to Java code fragment
 type Account(number: string, firstName: string, accountType) =
@@ -22,9 +24,11 @@ type Account(number: string, firstName: string, accountType) =
     member x.Status = status
     member x.InterestAccrued = interestAccrued
       
-    member x.isOpen() = status = Open
-    member x.addName(name) = names.Add(name); x
-    member x.calculate(fn) = interestAccrued <- fn x; interestAccrued
+    member x.IsOpen() = status = Open
+    member x.AddName(name) = names.Add(name); x
+    member x.Calculate(fn) = interestAccrued <- fn x; interestAccrued
+
+    member x.BelongsTo(name) = name = x.FirstName || Seq.exists ((=) name) x.Names
 
     override x.ToString() =
         StringBuilder().AppendFormat("{0}", x.Number)
@@ -36,9 +40,32 @@ let inline flip f x y = f y x
 
 /// Augmented type, equivalent to Scala code fragment
 type Account with
-    static member belongsTo name (x: Account) = name = x.FirstName || Seq.exists ((=) name) x.Names
-    static member (<<-)(x: Account, name) = x.addName(name)
+    static member belongsTo name (x: Account) = x.BelongsTo(name)
+    static member (<<-)(x: Account, name) = x.AddName(name)
     static member calculateInterest (x: Account) =
             let fn = fun _ -> 100.0
-            x.calculate fn
+            x.Calculate fn
+
+type SeqBuilder() =
+    // Standard definition for 'for' and 'yield' in sequences
+    member x.For (source : seq<'T>, body : 'T -> seq<'R>) =
+      seq { for v in source do yield! body v }
+    member x.Yield item =
+      seq { yield item }
+
+    // Define an operation 'select' that performs projection
+    [<CustomOperation("map", AllowIntoPattern=true)>]
+    member x.Map (source : seq<'T>, [<ProjectionParameter>] f: 'T -> 'R) : seq<'R> =
+        Seq.map f source
+          
+    [<CustomOperation("iter")>]
+    member x.Iterate (source : seq<'T>, [<ProjectionParameter>] f : 'T -> unit) =
+        Seq.iter f source
+
+    [<CustomOperation("filter", MaintainsVariableSpace=true)>]
+    member x.Filter (source : seq<'T>, [<ProjectionParameter>] f: 'T -> bool) : seq<'T> =
+        Seq.filter f source
+
+let sequence = SeqBuilder()
+
 

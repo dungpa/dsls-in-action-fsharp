@@ -8,18 +8,27 @@ let acc3 = Account("acc-3", "Fried T.")
 acc1 <<- "Mary R." <<- "Shawn P." <<- "John S."
 
 let accounts = [acc1; acc2; acc3]
-accounts |> Seq.filter (Account.belongsTo "John S.")
-         |> Seq.map (fun x -> x.FirstName)
-         |> Seq.iter (printfn "%O")
+
+sequence {
+    for acc in accounts do
+    map acc.FirstName
+}
+|> Seq.iter (printfn "%O")
+
 let threshold = 0.0
 
-/// Application of high-order functions / combinators
-accounts |> Seq.filter (Account.belongsTo "John S.")
-         |> Seq.map (fun x -> x.calculate calculatorImpl)
-         |> Seq.filter (flip (>) threshold)
-         |> Seq.fold (+) 0.0
+sequence {
+    for acc in accounts do
+    filter (acc.BelongsTo "John S.")
+    map (acc.Calculate calculatorImpl) into x
+    filter (x > threshold)
+}
+|> Seq.fold (+) 0.0
 
-accounts |> Seq.filter (Account.belongsTo "John S.")
-         |> Seq.map Account.calculateInterest
-         |> Seq.filter (flip (>) threshold)
-         |> Seq.fold (+) 0.0
+sequence {
+    for acc in accounts do
+    filter (acc.BelongsTo "John S.")
+    map (Account.calculateInterest acc) into x
+    filter (x > threshold)
+}
+|> Seq.fold (+) 0.0
