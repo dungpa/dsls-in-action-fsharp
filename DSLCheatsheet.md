@@ -53,8 +53,8 @@ match status with
 
 This feature is not used very often in the translated examples, but it is worth mentioning anyway.
 UoMs are especially helpful to create DSLs in domains of science, engineering, etc. 
-One of the nice DSLs using UoMs is [ODSL](http://blogs.msdn.com/b/lengningliu/archive/2009/09/04/optimization-domain-specific-language-in-f-with-units-of-measure.aspx) which is Microsoft SolverFoundation's DSL for optimization domain.
-This DSL uses F# quotations to make placeholders for language elements and utilize UoMs for expressing different kinds of units.
+One of the nice DSLs using UoMs is ODSL which is [Microsoft SolverFoundation's DSL for optimization domain](http://blogs.msdn.com/b/lengningliu/archive/2009/09/04/optimization-domain-specific-language-in-f-with-units-of-measure.aspx).
+This DSL uses F# quotations to make placeholders for language elements and utilizes UoMs for expressing different kinds of units.
 
 ---
 
@@ -89,6 +89,34 @@ accounts
 ### High-order functions & function composition ###
 ---
 ### Computation expressions ###
+Computation expressions is a blessing to making DSLs in F#.
+In F# 3.0, the opportunities are even bigger with extended keywords thanks to the use of [CustomOperation](http://msdn.microsoft.com/en-us/library/hh289709.aspx) attribute.
+Here is an excerpt of creating and using custom operations.
+
+```fsharp
+/// (from Chapter3/Account.Fsharp.fs)
+type SeqBuilder() =
+    // A few standard operations are defined here.
+    // ...
+    [<CustomOperation("map", AllowIntoPattern=true)>]
+    member x.Map (source : seq<'T>, [<ProjectionParameter>] f: 'T -> 'R) : seq<'R> =
+        Seq.map f source
+  
+    [<CustomOperation("filter", MaintainsVariableSpace=true)>]
+    member x.Filter (source : seq<'T>, [<ProjectionParameter>] f: 'T -> bool) : seq<'T> =
+        Seq.filter f source
+
+let sequence = SeqBuilder()
+
+sequence {
+    for acc in accounts do
+    filter (acc.BelongsTo "John S.")
+    map (acc.Calculate calculatorImpl) into x
+    filter (x > threshold)
+}
+|> Seq.fold (+) 0.0
+```
+
 ---
 ### Code quotations ###
 ---
