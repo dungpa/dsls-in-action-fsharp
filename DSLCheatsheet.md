@@ -36,6 +36,9 @@ let order = Order()
 ### Discriminated unions & pattern matching ###
 Discriminated unions is a concise and type-safe way to model sum types. 
 Its combination with pattern matching does give a look of a DSL in processing data.
+Along the line of DUs, [active patterns](http://msdn.microsoft.com/en-us/library/dd233248.aspx) is also a cool feature for DSLing.
+Active patterns give different *views* on the same data, which may be helpful if you implement DSLs on top of C# assemblies. 
+
 ```fsharp
 /// (from Chapter3/Account.Scala.fs)
 type Status = Open | Closed
@@ -46,9 +49,13 @@ match status with
 | Closed -> printfn "closed"
 ```
 ---
-### Active patterns ###
----
 ### Unit of measures ###
+
+This feature is not used very often in the translated examples, but it is worth mentioning anyway.
+UoMs are especially helpful to create DSLs in domains of science, engineering, etc. 
+One of the nice DSLs using UoMs is [ODSL](http://blogs.msdn.com/b/lengningliu/archive/2009/09/04/optimization-domain-specific-language-in-f-with-units-of-measure.aspx) which is Microsoft SolverFoundation's DSL for optimization domain.
+This DSL uses F# quotations to make placeholders for language elements and utilize UoMs for expressing different kinds of units.
+
 ---
 
 ### Infix functions ###
