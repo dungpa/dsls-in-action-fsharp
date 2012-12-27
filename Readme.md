@@ -41,8 +41,3 @@ The translated examples conform to the following conventions:
 
 For detailed notes about F#-specific features for DSL development, please refer to [A cheatsheet for F#'s DSL-friendly features](https://github.com/dungpa/dsls-in-action-fsharp/blob/master/DSLCheatsheet.md).
 
----
-### TODO ###
-
-1. Add listing reference to each example.
-2. Revisit old examples to add new functionalities (e.g. after learning F# metaprogramming).
