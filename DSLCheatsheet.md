@@ -31,7 +31,22 @@ let order = Order()
             .ValueAs(StandardOrderValuer)
 ```
 ---
+
 ### Records ###
+Records are very natural in expressing DSLs.
+They help to create associations between names and values.
+Since they require values for all fields, sometimes augmenting a record with default values `{Default with ...}` is very handy to create an implicit context.
+
+```fsharp
+/// (from Chapter3/Order.Groovy1.fsx)
+let orders = Empty
+
+orders <<- NewOrder.To.Buy(100 .Shares.Of "IBM") {
+  limitPrice = 300
+  allOrNone = true
+  valueAs = fun qty unitPrice -> qty * unitPrice - 500
+}
+```
 ---
 
 ### Discriminated unions & pattern matching ###
