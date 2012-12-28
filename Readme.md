@@ -26,7 +26,7 @@ This requires that you have the "[Allow NuGet to download missing packages durin
 in Visual Studio, you can find the setting under `Options -> Package Manager -> General`.
 
 *Package Restore* feature hasn't worked in MonoDevelop (yet). 
-In the project root directory (`dsls-in-action-fsharp`), you can issue the command `sh nuget.sh` in order that NuGet downloads necessary packages.
+In the project root directory (`dsls-in-action-fsharp`), you can issue the command `sh .nuget/nuget.sh` in order that NuGet downloads necessary packages.
 
 Once NuGet is installed and configured, you should be able to build the solution.
 
@@ -36,7 +36,8 @@ Once NuGet is installed and configured, you should be able to build the solution
 
 The translated examples conform to the following conventions:
 - Each example is named `XX.YY.fs` where `XX` is the name of the problem and `YY` is the language for which the original program is written, including Java, Ruby, Groovy, Clojure and Scala.
-- `XX.YY.fsx` files are the corresponding scripting versions of `XX.YY.fs` files.
+- There are a few examples with Fsharp suffix. They are written from scratch and more F#-ish in implementing DSLs.
+- `XX.YY.fsx` files are often the corresponding scripting versions of `XX.YY.fs` files.
 - Many files have `// Listing X.Y ...` bits which are to reference the book's corresponding snippets.
 
 For detailed notes about F#-specific features for DSL development, please refer to [A cheatsheet for F#'s DSL-friendly features](https://github.com/dungpa/dsls-in-action-fsharp/blob/master/DSLCheatsheet.md).
