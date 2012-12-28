@@ -15,7 +15,7 @@ F# class constructors and methods accept named arguments.
 This is an advantage to shorten a chain of method calls and avoid the need of fluent style.
 
 ```fsharp
-/// Using named arguments (from Chapter2/Order.Java.fsx)
+/// from Chapter2/Order.Java.fsx
 let order = Order.Buy(
                     quantity = 100, 
                     security = "IBM", 
@@ -38,7 +38,7 @@ They help to create associations between names and values.
 Since they require values for all fields, sometimes augmenting a record with default values `{Default with ...}` is very handy to create an implicit context.
 
 ```fsharp
-/// (from Chapter3/Order.Groovy1.fsx)
+/// from Chapter3/Order.Groovy1.fsx
 let orders = Empty
 
 orders <<- NewOrder.To.Buy(100 .Shares.Of "IBM") {
@@ -56,7 +56,7 @@ Along the line of DUs, [active patterns](http://msdn.microsoft.com/en-us/library
 Active patterns give different *views* on the same data, which may be helpful if you implement DSLs on top of C# assemblies. 
 
 ```fsharp
-/// (from Chapter3/Account.Scala.fs)
+/// from Chapter3/Account.Scala.fs
 type Status = Open | Closed
 type Type = Trading | Settlement | Both
 
@@ -78,7 +78,7 @@ This DSL uses F# quotations to make placeholders for language elements and utili
 Using infix functions is a great way to derive concise and composable DSLs. 
 Since F# only allows symbolic infix operators, the use of infix operators is more limited than that in other functional programming languages.
 ```fsharp
-/// (from Chapter3/Account.Scala.fs)
+/// from Chapter3/Account.Scala.fs
 type Account with
     static member (<<-)(x: Account, name) = x.addName(name)
             
@@ -94,7 +94,7 @@ They help to reorder functions to show flow of processing and give good hints to
 An appropriate use of pipepline operators can give a look of a small DSL in manipulating data.
   
 ```fsharp
-/// Using pipepline operators (from Chapter3/Account.Scala.fs)
+/// from Chapter3/Account.Scala.fs
 accounts 
 |> Seq.filter (Account.belongsTo "John S.")
 |> Seq.map Account.calculateInterest
@@ -116,7 +116,7 @@ In F# 3.0, the opportunities are even bigger with extended keywords thanks to th
 Here is an excerpt of creating and using custom operations.
 
 ```fsharp
-/// (from Chapter3/Account.Fsharp.fs)
+/// from Chapter3/Account.Fsharp.fs
 type SeqBuilder() =
     // A few standard operations are defined here.
     // ...
@@ -141,13 +141,18 @@ sequence {
 
 ---
 ### Code quotations ###
+Code quotations is an F#-ish facility for metaprogramming. 
+It's easy to turn a function or a value to an F# Abstract Syntax Tree (AST) with quotations.
+DSL implementation often uses quotations as placeholders to build a nice surface API and manipulates ASTs behind the scene in an appropriate way.
+In this project, we do not use quotations. However, many F# DSLs are built upon this technique e.g. [the query language in F# 2.0](http://blogs.msdn.com/b/dsyme/archive/2009/10/23/a-quick-refresh-on-query-support-in-the-f-power-pack.aspx).
+
 ---
 
 ### Type augmentation ###
 You can easily add extension methods to a built-in or user-defined type in F#. 
 This is very helpful to inject new functionalities to known types and make DSLs more readable.
 ```fsharp
-/// (from Chapter2/Order.Groovy.fs)
+/// from Chapter2/Order.Groovy.fs
 type Int32 with
     member x.Shares = x
     member x.Of (s: string) = x, s
