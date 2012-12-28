@@ -34,8 +34,8 @@ let order = Order()
 
 ### Records ###
 Records are very natural in expressing DSLs.
-They help to create associations between names and values.
-Since they require values for all fields, sometimes augmenting a record with default values `{Default with ...}` is very handy to create an implicit context.
+They create associations between names and values.
+Since a value is required for each field, sometimes augmenting a record from default values `{Default with ...}` is very handy to create an implicit context.
 
 ```fsharp
 /// from Chapter3/Order.Groovy1.fsx
@@ -53,7 +53,7 @@ orders <<- NewOrder.To.Buy(100 .Shares.Of "IBM") {
 Discriminated unions is a concise and type-safe way to model sum types. 
 Its combination with pattern matching does give a look of a DSL in processing data.
 Along the line of DUs, [active patterns](http://msdn.microsoft.com/en-us/library/dd233248.aspx) is also a cool feature for DSLing.
-Active patterns give different *views* on the same data, which may be helpful if you implement DSLs on top of C# assemblies. 
+Active patterns give different *views* on the same data, which may be convenient if you implement DSLs on top of other F#/C# assemblies. 
 
 ```fsharp
 /// from Chapter3/Account.Scala.fs
@@ -68,7 +68,7 @@ match status with
 ### Unit of measures ###
 
 This feature is not used very often in the translated examples, but it is worth mentioning anyway.
-UoMs are especially helpful to create DSLs in domains of science, engineering, etc. 
+UoMs are extremely nice to create DSLs in domains of science, engineering, etc. 
 One of the nice DSLs using UoMs is ODSL which is [Microsoft SolverFoundation's DSL for optimization domain](http://blogs.msdn.com/b/lengningliu/archive/2009/09/04/optimization-domain-specific-language-in-f-with-units-of-measure.aspx).
 This DSL uses F# quotations to make placeholders for language elements and utilizes UoMs for expressing different kinds of units.
 
@@ -104,7 +104,7 @@ accounts
 ---
 ### High-order functions & function composition ###
 High-order functions and function composition are important to create DSLs in a declarative style.
-Note that the example in *pipeline operators* section above is also demonstrating these concepts.
+Note that the example in *pipeline operators* section above also demonstrates these concepts.
 In Chapter 7 and Chapter 8, we use [FParsec](http://www.quanttec.com/fparsec/), an F# parser combinator library to implement external DSLs.
 FParsec can be considered as an DSL for writing parsers. 
 The library is a beautiful example of crafting combinators for composition, succinctness, readability, etc; which are main goals of declarative DSLs.
@@ -113,7 +113,7 @@ The library is a beautiful example of crafting combinators for composition, succ
 ### Computation expressions ###
 Computation expressions is a blessing to making DSLs in F#.
 In F# 3.0, the opportunities are even bigger with extended keywords thanks to the use of [CustomOperation](http://msdn.microsoft.com/en-us/library/hh289709.aspx) attribute.
-Here is an excerpt of creating and using custom operations.
+Here is an excerpt of producing and consuming custom keywords.
 
 ```fsharp
 /// from Chapter3/Account.Fsharp.fs
@@ -144,13 +144,13 @@ sequence {
 Code quotations is an F#-ish facility for metaprogramming. 
 It's easy to turn a function or a value to an F# Abstract Syntax Tree (AST) with quotations.
 DSL implementation often uses quotations as placeholders to build a nice surface API and manipulates ASTs behind the scene in an appropriate way.
-In this project, we do not use quotations. However, many F# DSLs are built upon this technique e.g. [the query language in F# 2.0](http://blogs.msdn.com/b/dsyme/archive/2009/10/23/a-quick-refresh-on-query-support-in-the-f-power-pack.aspx).
+In this project, we do not use quotations; however, many F# DSLs are built upon this technique e.g. [the query language in F# 2.0](http://blogs.msdn.com/b/dsyme/archive/2009/10/23/a-quick-refresh-on-query-support-in-the-f-power-pack.aspx).
 
 ---
 
 ### Type augmentation ###
 You can easily add extension methods to a built-in or user-defined type in F#. 
-This is very helpful to inject new functionalities to known types and make DSLs more readable.
+This is very handy to inject new functionalities to known types and make DSLs more readable.
 ```fsharp
 /// from Chapter2/Order.Groovy.fs
 type Int32 with
@@ -168,4 +168,4 @@ let order =
 ### Type constraints ###
 [Type constraints and *inline* keyword](http://msdn.microsoft.com/en-us/library/dd548046.aspx) are used to stretch F#'s type system for some advance features such as duck typing, etc.
 They are really helpful if what you're trying to express is beyond capabilities of F# static type system. 
-However, these features are not recommended since they can lead to incomprehensible code and obscure error messages.
+However, these features are not recommended since they can lead to incomprehensible programs and obscure error messages.
