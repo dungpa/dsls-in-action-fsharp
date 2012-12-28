@@ -103,6 +103,12 @@ accounts
 ```       
 ---
 ### High-order functions & function composition ###
+High-order functions and function composition are important to create DSLs in a declarative style.
+Note that the example in *pipeline operators* section above is also demonstrating these concepts.
+In Chapter 7 and Chapter 8, we use [FParsec](http://www.quanttec.com/fparsec/), an F# parser combinator library to implement external DSLs.
+FParsec can be considered as an DSL for writing parsers. 
+The library is a beautiful example of crafting combinators for composition, succinctness, readability, etc; which are main goals of declarative DSLs.
+
 ---
 ### Computation expressions ###
 Computation expressions is a blessing to making DSLs in F#.
