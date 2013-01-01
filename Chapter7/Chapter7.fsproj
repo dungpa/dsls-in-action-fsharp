@@ -43,6 +43,8 @@
     <Compile Include="Order.Java.fs" />
     <Compile Include="Parser.Java.fs" />
     <None Include="Main.Java.fsx" />
+    <Compile Include="Order.Fsharp.fs" />
+    <None Include="Order.Fsharp.fsx" />
     <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>
