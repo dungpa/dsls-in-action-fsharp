@@ -46,6 +46,8 @@
     <None Include="Semantic.Trading.Scala.fsx" />
     <Compile Include="SSI.Trading.Scala.fs" />
     <None Include="SSI.Trading.Scala.fsx" />
+    <Compile Include="Semantic.Trading.Fsharp.fs" />
+    <None Include="Semantic.Trading.Fsharp.fsx" />
     <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>
