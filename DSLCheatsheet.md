@@ -116,27 +116,28 @@ In F# 3.0, the opportunities are even bigger with extended keywords thanks to th
 Here is an excerpt of producing and consuming custom keywords.
 
 ```fsharp
-/// from Chapter3/Account.Fsharp.fs
-type SeqBuilder() =
-    // A few standard operations are defined here.
-    // ...
-    [<CustomOperation("map", AllowIntoPattern=true)>]
-    member x.Map (source : seq<'T>, [<ProjectionParameter>] f: 'T -> 'R) : seq<'R> =
-        Seq.map f source
+/// from Chapter8/Semantic.Trading.Fsharp.fs
+type TradeBuilder() =
+    member x.Yield (()) = Items []
+
+    [<CustomOperation("buy")>]
+    member x.Buy (Items sources, i: int, s: string, sh: Shares, a: At, m: PriceType, p: int) : Items =
+        Items [ yield! sources
+                yield LineItem(Security(i, s), Buy, Price(m, p)) ]
   
-    [<CustomOperation("filter", MaintainsVariableSpace=true)>]
-    member x.Filter (source : seq<'T>, [<ProjectionParameter>] f: 'T -> bool) : seq<'T> =
-        Seq.filter f source
+    [<CustomOperation("sell")>]
+    member x.Sell (Items sources, i: int, s: string, sh: Shares, a: At, m: PriceType, p: int) : Items =
+        Items [ yield! sources
+                yield LineItem(Security(i, s), Sell, Price(m, p)) ]  
 
-let sequence = SeqBuilder()
+let trade = TradeBuilder()
 
-sequence {
-    for acc in accounts do
-    filter (acc.BelongsTo "John S.")
-    map (acc.Calculate calculatorImpl) into x
-    filter (x > threshold)
-}
-|> Seq.fold (+) 0.0
+let example = 
+    trade {
+        buy 100 "IBM" Shares At Max 45
+        sell 40 "Sun" Shares At Min 24
+        buy 25 "CISCO" Shares At Max 56 
+    }
 ```
 
 ---
