@@ -44,8 +44,8 @@
     <None Include="Order.Groovy1.fsx" />
     <None Include="Order.Groovy2.fsx" />
     <Compile Include="Account.Scala.fs" />
-    <Compile Include="Account.Fsharp.fs" />
     <None Include="Account.Scala.fsx" />
+    <Compile Include="Account.Fsharp.fs" />
     <None Include="Account.Fsharp.fsx" />
     <None Include="Readme.md" />
   </ItemGroup>

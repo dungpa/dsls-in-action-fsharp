@@ -20,7 +20,7 @@ type Order (buySell: BuySell, security: string, price: int, account: string) =
         sprintf "Order is {%A} / {%A} / {%A} / {%A}" x.BuySell x.Security x.Price x.Account
                      
 type OrderBuilder() =
-    member x.Yield (()) = Seq.empty<Order>
+    member x.Yield (()) = Seq.empty
 
     [<CustomOperation("buy")>]
     member x.Buy (source : seq<_>, s: string, a: At, p: PriceType, i: int, f: For, acc: string) : seq<Order> =
@@ -33,5 +33,3 @@ type OrderBuilder() =
               yield Order(Sell, s, i, acc) }
   
 let order = OrderBuilder()
-
-
