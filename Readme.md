@@ -1,13 +1,13 @@
 DSLs in Action in F#
 ===
-### Translation of Code and Examples from Debasish Ghosh's "[DSLs in Action](http://www.manning.com/ghosh/)" ###
+### Translation of [Code and Examples](https://github.com/debasishg/dsls_in_action) from Debasish Ghosh's "[DSLs in Action](http://www.manning.com/ghosh/)" ###
 
 ---
 
 ### Purpose ###
 This is an *unfaithful* translation of the book's examples to F#. 
 Indeed translating examples from 5 different languages to another language is impossible.
-Therefore, I tried to create roughly similar examples in F# and used original code as the source of ideas and inspiration.
+Therefore, we tried to create roughly similar examples in F# and used original code as the source of ideas and inspiration.
 Certain examples which cannot be expressed in F# have been omitted or updated to be F#-friendly.
 
 ---
