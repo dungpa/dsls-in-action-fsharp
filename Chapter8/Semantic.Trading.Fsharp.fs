@@ -23,12 +23,12 @@ type TradeBuilder() =
     member x.Yield (()) = Items []
 
     [<CustomOperation("buy")>]
-    member x.Buy (Items sources, i: int, s: string, sh: Shares, a: At, m: PriceType, p: int) : Items =
+    member x.Buy (Items sources, i: int, s: string, sh: Shares, a: At, m: PriceType, p: int) =
         Items [ yield! sources
                 yield LineItem(Security(i, s), Buy, Price(m, p)) ]
   
     [<CustomOperation("sell")>]
-    member x.Sell (Items sources, i: int, s: string, sh: Shares, a: At, m: PriceType, p: int) : Items =
+    member x.Sell (Items sources, i: int, s: string, sh: Shares, a: At, m: PriceType, p: int) =
         Items [ yield! sources
                 yield LineItem(Security(i, s), Sell, Price(m, p)) ]  
 

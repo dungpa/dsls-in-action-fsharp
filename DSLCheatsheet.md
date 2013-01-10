@@ -50,7 +50,7 @@ orders <<- NewOrder.To.Buy(100 .Shares.Of "IBM") {
 ---
 
 ### Discriminated unions & pattern matching ###
-Discriminated unions is a concise and type-safe way to model sum types. 
+Discriminated unions is a concise and type-safe way to model domain knowledge. 
 Its combination with pattern matching does give a look of a DSL in processing data.
 Along the line of DUs, [active patterns](http://msdn.microsoft.com/en-us/library/dd233248.aspx) is also a cool feature for DSLing.
 Active patterns give different *views* on the same data, which may be convenient if you implement DSLs on top of other F#/C# assemblies. 
@@ -58,7 +58,7 @@ Active patterns give different *views* on the same data, which may be convenient
 ```fsharp
 /// from Chapter3/Account.Scala.fs
 type Status = Open | Closed
-type Type = Trading | Settlement | Both
+type AccountType = Trading | Settlement | Both
 
 match status with
 | Open -> printfn "open"
@@ -69,7 +69,7 @@ match status with
 
 This feature is not used very often in the translated examples, but it is worth mentioning anyway.
 UoMs are extremely nice to create DSLs in domains of science, engineering, etc. 
-One of the nice DSLs using UoMs is ODSL which is [Microsoft SolverFoundation's DSL for optimization domain](http://blogs.msdn.com/b/lengningliu/archive/2009/09/04/optimization-domain-specific-language-in-f-with-units-of-measure.aspx).
+One of the nicest DSLs using UoMs is ODSL, [Microsoft SolverFoundation's DSL for optimization domain](http://blogs.msdn.com/b/lengningliu/archive/2009/09/04/optimization-domain-specific-language-in-f-with-units-of-measure.aspx).
 This DSL uses F# quotations to make placeholders for language elements and utilizes UoMs for expressing different kinds of units.
 
 ---
@@ -96,8 +96,8 @@ An appropriate use of pipepline operators can give a look of a small DSL in mani
 ```fsharp
 /// from Chapter3/Account.Scala.fs
 accounts 
-|> Seq.filter (Account.belongsTo "John S.")
-|> Seq.map Account.calculateInterest
+|> Seq.filter (belongsTo "John S.")
+|> Seq.map calculateInterest
 |> Seq.filter (flip (>) threshold)
 |> Seq.fold (+) 0.0
 ```       
@@ -121,12 +121,12 @@ type TradeBuilder() =
     member x.Yield (()) = Items []
 
     [<CustomOperation("buy")>]
-    member x.Buy (Items sources, i: int, s: string, sh: Shares, a: At, m: PriceType, p: int) : Items =
+    member x.Buy (Items sources, i: int, s: string, sh: Shares, a: At, m: PriceType, p: int) =
         Items [ yield! sources
                 yield LineItem(Security(i, s), Buy, Price(m, p)) ]
   
     [<CustomOperation("sell")>]
-    member x.Sell (Items sources, i: int, s: string, sh: Shares, a: At, m: PriceType, p: int) : Items =
+    member x.Sell (Items sources, i: int, s: string, sh: Shares, a: At, m: PriceType, p: int) =
         Items [ yield! sources
                 yield LineItem(Security(i, s), Sell, Price(m, p)) ]  
 
@@ -167,6 +167,6 @@ let order =
 ```
 ---
 ### Type constraints ###
-[Type constraints and *inline* keyword](http://msdn.microsoft.com/en-us/library/dd548046.aspx) are used to stretch F#'s type system for some advance features such as duck typing, etc.
+[Type constraints and *inline* keyword](http://msdn.microsoft.com/en-us/library/dd548046.aspx) are used to stretch F#'s type system for some advanced features such as duck typing, etc.
 They are really helpful if what you're trying to express is beyond capabilities of F# static type system. 
 However, these features are not recommended since they can lead to incomprehensible programs and obscure error messages.

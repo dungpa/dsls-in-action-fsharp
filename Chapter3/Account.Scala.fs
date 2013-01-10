@@ -3,7 +3,7 @@
 open System.Text
 
 type Status = Open | Closed
-type Type = Trading | Settlement | Both
+type AccountType = Trading | Settlement | Both
 with override x.ToString() = match x with Trading -> "Trading" | Settlement -> "Settlement" | Both -> "Both"
 
 /// Base type, equivalent to Java code fragment
