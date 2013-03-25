@@ -87,11 +87,11 @@ acc1 <<- "Mary R." <<- "Shawn P." <<- "John S."
 ```
 ---
 
-### Pipepline operators ###
+### Pipeline operators ###
 
-Pipepline operators (`|>`, `<|`, `||>`, `<||`, etc) are commonly-used in F#. 
+Pipeline operators (`|>`, `<|`, `||>`, `<||`, etc) are commonly-used in F#. 
 They help to reorder functions to show flow of processing and give good hints to F# type checker. 
-An appropriate use of pipepline operators can give a look of a small DSL in manipulating data.
+An appropriate use of pipeline operators can give a look of a small DSL in manipulating data.
   
 ```fsharp
 /// from Chapter3/Account.Scala.fs
